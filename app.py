@@ -15,7 +15,7 @@ def index():
         sql_query = "select * from Taxonomy_v6 limit 1000;"
         mysql_engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}/{database}")
         data = pd.read_sql_query(sql_query, con=mysql_engine)
-    return jsonify({"record_count": len(data)})
+    return jsonify({"record_count": len(data), "len_cols":len(data.columns)})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=9025)
